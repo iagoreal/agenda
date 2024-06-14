@@ -1,23 +1,32 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { HomeService } from './home.service';
-import { ScheduleRestHome } from '../service/rest/schedule.rest'
-
+import {HomeService} from './home.service';
+import {Schedule} from '../model/schedule.model'
 
 export default defineComponent({
+  name: "home",
   data(){
     return{
-
+      data: new Schedule()
     }
-  }, 
+  },
+  computed:{
+    service(){
+      return new HomeService()
+    }
+
+  },
+  methods:{
+    getSchedule(){
+      this.service.getSchedule().then((response:Schedule)=>this.data=response)
+    }
+  },
   mounted(){
-    ScheduleRestHome
+    this.getSchedule()
   }
 })
 </script>
 
 <template>
-  <main>
-    <>
-  </main>
+
 </template>

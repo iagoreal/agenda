@@ -2,7 +2,7 @@ import api from "../config"
 
 export class ScheduleRestHome{
     getSchedule(){
-        return api.get("/")
+        return api.get("/contacts")
     }
         
 }
