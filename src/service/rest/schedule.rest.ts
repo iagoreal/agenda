@@ -4,5 +4,7 @@ export class ScheduleRestHome{
     getSchedule(){
         return api.get("/contacts")
     }
+
+    
         
 }
