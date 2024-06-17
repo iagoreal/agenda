@@ -1,7 +1,11 @@
 <script lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import vue from '@vitejs/plugin-vue'
+
+export default {
+  
+  
+}
 
 </script>
 
@@ -9,11 +13,9 @@ import vue from '@vitejs/plugin-vue'
   <header>
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/detail">Details</RouterLink>
       </nav>
     </div>
   </header>

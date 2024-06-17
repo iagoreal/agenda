@@ -2,12 +2,13 @@
 import { defineComponent } from 'vue';
 import {HomeService} from './home.service';
 import {Schedule} from '../model/schedule.model'
+import { pipe } from "rxjs";
 
 export default defineComponent({
   name: "home",
   data(){
     return{
-      data: new Schedule()
+      datas: new Schedule()
     }
   },
   computed:{
@@ -18,7 +19,7 @@ export default defineComponent({
   },
   methods:{
     getSchedule(){
-      this.service.getSchedule().then((response:Schedule)=>this.data=response)
+      this.service.scheduleHome.pipe().subscribe({next:(response) => this.datas = response})
     }
   },
   mounted(){
@@ -28,5 +29,10 @@ export default defineComponent({
 </script>
 
 <template>
+  <h1>All contacts from Schedule</h1>
+  <ul>
+    <li v-for="contact in datas">
+    name: {{  }}</li>
+  </ul>
 
 </template>

@@ -1,10 +1,20 @@
 import { ScheduleRestHome } from "../service/rest/schedule.rest";
 import type { AxiosResponse } from "axios";
+import { BehaviorSubject, Observable, take } from "rxjs";
+
 export class HomeService{
-    constructor (
-        private _scheduleHome = new ScheduleRestHome()
-    ){}
-    getSchedule(){
-       return this._scheduleHome.getSchedule().then((response:AxiosResponse)=>response.data)
-    }
+    constructor (private _scheduleHome = new ScheduleRestHome()) {}
+    
+    private scheduleHome$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+    scheduleHome: Observable<any> = this.scheduleHome$.asObservable();
+
+    getSchedule():void{
+        this._scheduleHome.getSchedule().pipe(take(1)).subscribe({
+            next: (response:any) => {
+                this.scheduleHome$.next(response);
+            },
+        })
+    
+    }   
+
 }
