@@ -1,9 +1,10 @@
-import { ScheduleRestHome } from "../service/rest/schedule.rest";
+import { ContactsRest } from "../service/rest/schedule.rest";
 import type { AxiosResponse } from "axios";
 import { BehaviorSubject, Observable, take } from "rxjs";
 
+
 export class HomeService{
-    constructor (private _scheduleHome = new ScheduleRestHome()) {}
+    constructor (private _scheduleHome = new ContactsRest()) {}
     
     private scheduleHome$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
     scheduleHome: Observable<any> = this.scheduleHome$.asObservable();

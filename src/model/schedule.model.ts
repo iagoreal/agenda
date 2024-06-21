@@ -3,7 +3,7 @@ export class Schedule{
         public id?: string,
         public name?: string,
         public email?: string,
-        public phone?: string,
-        public adress?: string
+        public phone?: string
+       
     ) {}
 }

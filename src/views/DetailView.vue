@@ -1,15 +1,45 @@
 <template>
-  <div class="about">
-    <h1>Detail a contact typing you id</h1>
-  </div>
+        <div>
+          <h1>{{ $route.params.id }}</h1>
+            <h1>{{ schedule?.name }}</h1>
+            <article>{{ schedule?.phone }}</article>
+            <article > {{ schedule?.id }}</article>
+        </div>
+        <RouterView/>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<script lang="ts">
+import {Schedule} from '../model/schedule.model'
+import ContactService from "./detail.service"
+
+  export default {
+    data(){
+      return {
+        schedule: new Schedule()
+      }
+    },
+    
+    computed: {
+      contactId(){
+        return String(this.$route.params.id)
+        
+      },
+      service(){
+        return new ContactService()
+      }
+    },
+
+    methods:{
+      async fetchData(){
+        this.service.contact.pipe().subscribe({next: (response) => this.schedule = response})
+        console.log(this.schedule?.id)
+        return this.service.getContactById(`${this.schedule?.id}`)
+      }
+    },
+    created(){
+     this.fetchData()
 }
-</style>
+  }
+
+</script>
+<style></style>
