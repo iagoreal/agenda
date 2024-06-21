@@ -1,11 +1,10 @@
 <template>
         <div>
-          <h1>{{ $route.params.id }}</h1>
             <h1>{{ schedule?.name }}</h1>
             <article>{{ schedule?.phone }}</article>
-            <article > {{ schedule?.id }}</article>
+            <article > {{ schedule?.email }}</article>
         </div>
-        <RouterView/>
+     
 </template>
 
 <script lang="ts">
@@ -32,8 +31,8 @@ import ContactService from "./detail.service"
     methods:{
       async fetchData(){
         this.service.contact.pipe().subscribe({next: (response) => this.schedule = response})
-        console.log(this.schedule?.id)
-        return this.service.getContactById(`${this.schedule?.id}`)
+        this.service.getContactById(this.contactId)
+
       }
     },
     created(){

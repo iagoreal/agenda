@@ -15,12 +15,8 @@ export default defineComponent({
   computed:{
     service(){
       return new HomeService()
-    },
+    }
     
-    contactId(){
-        return String(this.$route.params.id)
-        
-      }
 
   },
   methods:{
@@ -39,8 +35,8 @@ export default defineComponent({
   <h1>All contacts from Schedule</h1>
   <ul>
     <li v-for="contact in datas" :key="contact.name">
-    name: <routerLink to="/"+${contactId}> {{ contact.name}}</routerLink>
+    name: <router-link :to="`/contacts/${contact.id}`"> {{ contact.name}} </router-link>
     </li>
   </ul>
-  <RouterView/>
+  
 </template>
